@@ -3,10 +3,10 @@
 import { renderInputOptions } from "../nftCollectionPagesConfig";
 import type { NextPage } from "next";
 import { CollectionCard } from "~~/components/nft-card/CollectionCard";
-import useAdvancedFiltering from "~~/hooks/useAdvancedFiltering";
-import useCheckboxes from "~~/hooks/useCheckboxes";
-import { useScaffoldTokens } from "~~/hooks/useScaffoldTokens";
-import useTokenIds from "~~/hooks/useTokenIds";
+import useAdvancedFiltering from "~~/hooks/scaffold-nft/useAdvancedFiltering";
+import useCheckboxes from "~~/hooks/scaffold-nft/useCheckboxes";
+import { useScaffoldCollection } from "~~/hooks/scaffold-nft/useScaffoldCollection";
+import useTokenIds from "~~/hooks/scaffold-nft/useTokenIds";
 
 const TestingGroundsPage: NextPage = () => {
   const { inputComponents, componentsToRender } = useCheckboxes(renderInputOptions);
@@ -18,7 +18,7 @@ const TestingGroundsPage: NextPage = () => {
 
   const { chosenOption, output: advancedOutput } = useAdvancedFiltering(inputComponents, onSubmit);
 
-  const { collection, isLoading, isError } = useScaffoldTokens(tokenIds, chosenOption);
+  const { collection, isLoading, isError } = useScaffoldCollection(tokenIds, chosenOption);
 
   return (
     <div className="flex flex-col items-center justify-center">

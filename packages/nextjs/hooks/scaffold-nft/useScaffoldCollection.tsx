@@ -1,6 +1,6 @@
 "use client";
 
-import { useFetches } from "./UseFetches";
+import { useFetches } from "./useFetches";
 import { useTokenURIs } from "./useTokenURIs";
 import { useScaffoldContract, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
@@ -10,7 +10,7 @@ const replacement = {
   w3s: "https://w3s.link/ipfs/",
 };
 
-export const useScaffoldTokens = (tokenIds: bigint[], replacementType: "ipfs" | "nftstorage" | "w3s" = "ipfs") => {
+export const useScaffoldCollection = (tokenIds: bigint[], replacementType: "ipfs" | "nftstorage" | "w3s" = "ipfs") => {
   const { data: scaffoldErc721 } = useScaffoldContract({ contractName: "ScaffoldERC721" });
 
   const {

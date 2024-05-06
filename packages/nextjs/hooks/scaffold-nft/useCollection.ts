@@ -10,7 +10,7 @@ const replacement = {
   w3s: "https://w3s.link/ipfs/",
 };
 
-export const useTokens = (
+export const useCollection = (
   chainName: string,
   address: string,
   tokenIds: bigint[],
