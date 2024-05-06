@@ -1,7 +1,7 @@
 "use client";
 
-import { renderInputOptions } from "../nftCollectionPagesConfig";
 import type { NextPage } from "next";
+import { renderInputOptions } from "~~/collectionPages.config";
 import { CollectionCard } from "~~/components/nft-card/CollectionCard";
 import useAdvancedFiltering from "~~/hooks/scaffold-nft/useAdvancedFiltering";
 import useCheckboxes from "~~/hooks/scaffold-nft/useCheckboxes";
