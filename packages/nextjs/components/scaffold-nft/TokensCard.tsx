@@ -2,7 +2,7 @@
 
 import React from "react";
 import "react-dropdown/style.css";
-import { NftCard } from "~~/components/nft-card/NftCard";
+import { NftCard } from "~~/components/scaffold-nft/NftCard";
 
 type Props = {
   tokens: any;
