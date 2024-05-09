@@ -7,11 +7,11 @@ import "~~/styles/globals.css";
 const baseUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : `http://localhost:${process.env.PORT || 3000}`;
-const imageUrl = `${baseUrl}/thumbnail.jpg`;
+const imageUrl = `${baseUrl}/thumbnail.png`;
 
-const title = "Scaffold-ETH 2 App";
-const titleTemplate = "%s | Scaffold-ETH 2";
-const description = "Built with 🏗 Scaffold-ETH 2";
+const title = "Ladders.Vision";
+const titleTemplate = "%s | Ladders.Vission";
+const description = "View any NFT on any blockchain.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
