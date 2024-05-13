@@ -34,7 +34,7 @@ export const CollectionCard = ({ collection, isLoading, isError, renderOrder }: 
 
   let mainContent;
   if (isLoading) {
-    mainContent = <p>Loading...</p>;
+    mainContent = <p>Loading NFTs...</p>;
   } else {
     if (isError) {
       mainContent = <p>There was an error. Please try changing the advanced settings.</p>;
