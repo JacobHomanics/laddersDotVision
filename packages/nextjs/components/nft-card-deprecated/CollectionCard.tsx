@@ -3,10 +3,16 @@
 import React from "react";
 import "react-dropdown/style.css";
 import { NftCard } from "~~/components/nft-card-deprecated/NftCard";
-import { AddressCard, AddressCardProps } from "~~/components/nft-card/values/AddressCard";
-import { CollectionNameCard, CollectionNameCardProps } from "~~/components/nft-card/values/CollectionNameCard";
-import { CollectionSymbolCard, CollectionSymbolCardProps } from "~~/components/nft-card/values/CollectionSymbolCard";
-import { CollectionDetails } from "~~/components/nft-card/values/extensions/CollectionDetails";
+import { AddressCard, AddressCardProps } from "~~/components/nft-card-deprecated/values/AddressCard";
+import {
+  CollectionNameCard,
+  CollectionNameCardProps,
+} from "~~/components/nft-card-deprecated/values/CollectionNameCard";
+import {
+  CollectionSymbolCard,
+  CollectionSymbolCardProps,
+} from "~~/components/nft-card-deprecated/values/CollectionSymbolCard";
+import { CollectionDetails } from "~~/components/nft-card-deprecated/values/extensions/CollectionDetails";
 
 const AddressCardComponent = (props: AddressCardProps) => {
   return <AddressCard {...props} bgColor="bg-base-300" />;

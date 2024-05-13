@@ -7,6 +7,7 @@ export type ValueContainerCardProps = {
   style?: Style;
   size?: Size;
   children?: any;
+  bgColor?: string;
 };
 
 const containerStyleMap = {
@@ -21,10 +22,11 @@ export const DescriptorCard = ({
   descriptor = undefined,
   style = "rounded",
   size = "base",
+  bgColor = "bg-base-200",
   children,
 }: ValueContainerCardProps) => {
   return (
-    <div className={`bg-base-200 ${beautyStyleMap[style]} ${containerStyleMap[size]}`}>
+    <div className={`${bgColor} ${beautyStyleMap[style]} ${containerStyleMap[size]}`}>
       {descriptor ? <p className={`text-center ${descriptorStyleMap[size]}`}>{descriptor}</p> : <></>}
       <div className="flex justify-center">{children} </div>
     </div>

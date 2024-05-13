@@ -11,7 +11,6 @@ export type ScaffoldToken = {
       value: string;
       alt: string;
     };
-    // image?: string;
     attributes?: any[];
   };
 };

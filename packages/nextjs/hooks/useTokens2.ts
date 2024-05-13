@@ -5,6 +5,7 @@ import { erc721Abi } from "viem";
 import * as allChains from "viem/chains";
 import { usePublicClient } from "wagmi";
 import { createConfig, http } from "wagmi";
+import { ScaffoldCollection } from "~~/types/ScaffoldCollection";
 
 export type replacementType = "ipfs" | "nftstorage" | "w3s";
 
@@ -151,7 +152,7 @@ export const useTokens = (
           arr.push(token);
         }
 
-        const collection = {} as any;
+        const collection = {} as ScaffoldCollection;
         collection.tokens = arr;
         collection.address = address;
         collection.symbol = collectionSymbol;
