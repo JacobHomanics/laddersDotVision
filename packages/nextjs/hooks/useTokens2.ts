@@ -31,11 +31,7 @@ export const useTokens = (
     } as any,
   });
 
-  console.log(chain.id);
-
   const publicClient = usePublicClient({ chainId: chain.id, config });
-
-  console.log(publicClient);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
