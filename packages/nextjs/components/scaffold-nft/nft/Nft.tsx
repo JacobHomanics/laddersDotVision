@@ -1,13 +1,13 @@
 "use client";
 
+import { LoadType, RenderableTypes, Size, Style, beautyStyleMap } from "../../../types/scaffold-nft/Types";
 import { Address } from "../../scaffold-eth";
-import { LoadType, RenderableTypes, Size, Style, beautyStyleMap } from "../types/Types";
 import { Attributes } from "./values/Attributes";
 import { Descriptor } from "./values/Descriptor";
 import { Image } from "./values/Image";
 import { Text } from "./values/Text";
 import { v4 as uuidv4 } from "uuid";
-import { ScaffoldToken } from "~~/types/ScaffoldToken";
+import { ScaffoldToken } from "~~/types/scaffold-nft/ScaffoldToken";
 
 const sizeMap = {
   base: "w-32 lg:w-96 m-0.5 lg:m-4",

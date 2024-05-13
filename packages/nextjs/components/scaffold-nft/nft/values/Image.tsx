@@ -1,6 +1,6 @@
 "use client";
 
-import { Style, beautyStyleMap } from "../../types/Types";
+import { Style, beautyStyleMap } from "../../../../types/scaffold-nft/Types";
 
 export type ImageProps = {
   value: string | undefined;

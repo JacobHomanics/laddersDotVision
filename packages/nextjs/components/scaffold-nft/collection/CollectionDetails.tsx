@@ -1,11 +1,11 @@
 "use client";
 
+import { RenderableTypes, Size, Style } from "../../../types/scaffold-nft/Types";
 import { Descriptor } from "../nft/values/Descriptor";
 import { Text } from "../nft/values/Text";
-import { RenderableTypes, Size, Style } from "../types/Types";
 import { v4 as uuidv4 } from "uuid";
 import { Address } from "~~/components/scaffold-eth";
-import { ScaffoldCollection } from "~~/types/ScaffoldCollection";
+import { ScaffoldCollection } from "~~/types/scaffold-nft/ScaffoldCollection";
 
 export type CollectionDetailsProps = {
   collection?: ScaffoldCollection;

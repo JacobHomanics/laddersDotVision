@@ -43,7 +43,7 @@ const Home: NextPage = () => {
   async function onSubmit(e: any) {
     e.preventDefault();
 
-    window.location.href = "/" + selectedDropdownOption.value + "/" + e.target[1].value;
+    window.location.href = "/collections/" + selectedDropdownOption.value + "/" + e.target[1].value;
   }
 
   const [output, setOutput] = useState<any>();

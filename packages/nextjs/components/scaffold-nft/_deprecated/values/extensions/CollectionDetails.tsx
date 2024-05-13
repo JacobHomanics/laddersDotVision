@@ -9,7 +9,7 @@ import { CollectionNameCardProps } from "../CollectionNameCard";
 import { CollectionSymbolCard } from "../CollectionSymbolCard";
 import { CollectionSymbolCardProps } from "../CollectionSymbolCard";
 import { v4 as uuidv4 } from "uuid";
-import { ScaffoldToken } from "~~/types/ScaffoldToken";
+import { ScaffoldToken } from "~~/types/scaffold-nft/ScaffoldToken";
 
 export type CollectionDetailsProps = {
   token?: ScaffoldToken;

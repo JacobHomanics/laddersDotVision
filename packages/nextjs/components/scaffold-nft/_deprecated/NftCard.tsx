@@ -12,7 +12,7 @@ import { ImageCard, ImageCardProps } from "./values/ImageCard";
 import { NameCard, NameCardProps } from "./values/NameCard";
 import { CollectionDetails, CollectionDetailsProps } from "./values/extensions/CollectionDetails";
 import { v4 as uuidv4 } from "uuid";
-import { ScaffoldToken } from "~~/types/ScaffoldToken";
+import { ScaffoldToken } from "~~/types/scaffold-nft/ScaffoldToken";
 
 type PrettyLoadType = "animated" | "text";
 

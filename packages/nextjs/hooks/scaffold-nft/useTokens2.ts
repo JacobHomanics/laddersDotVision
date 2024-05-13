@@ -5,7 +5,7 @@ import { erc721Abi } from "viem";
 import * as allChains from "viem/chains";
 import { usePublicClient } from "wagmi";
 import { createConfig, http } from "wagmi";
-import { ScaffoldCollection } from "~~/types/ScaffoldCollection";
+import { ScaffoldCollection } from "~~/types/scaffold-nft/ScaffoldCollection";
 
 export type replacementType = "ipfs" | "nftstorage" | "w3s";
 

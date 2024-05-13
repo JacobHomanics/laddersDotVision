@@ -1,6 +1,6 @@
 "use client";
 
-import { Size, Style, beautyStyleMap } from "../../types/Types";
+import { Size, Style, beautyStyleMap } from "../../../../types/scaffold-nft/Types";
 
 export type DescriptorProps = {
   descriptor?: string;
