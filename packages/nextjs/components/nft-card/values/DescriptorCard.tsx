@@ -26,7 +26,7 @@ export const DescriptorCard = ({
   return (
     <div className={`bg-base-200 ${beautyStyleMap[style]} ${containerStyleMap[size]}`}>
       {descriptor ? <p className={`text-center ${descriptorStyleMap[size]}`}>{descriptor}</p> : <></>}
-      {children}{" "}
+      <div className="flex justify-center">{children} </div>
     </div>
   );
 };

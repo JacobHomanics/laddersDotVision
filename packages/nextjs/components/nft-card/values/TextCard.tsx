@@ -17,8 +17,6 @@ const undefinedStyleMap = {
 };
 
 export const TextCard = ({ value, size = "base", valueClassName = regularTextStyleMap[size] }: TextCardProps) => {
-  console.log(valueClassName);
-
   return (
     <>
       {value ? (
