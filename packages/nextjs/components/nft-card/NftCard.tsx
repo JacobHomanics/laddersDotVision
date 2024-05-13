@@ -17,13 +17,13 @@ type Props = {
 
   renderOrder?: (
     | "Image"
-    | "Id"
+    | "Token Id"
     | "Name"
     | "Description"
     | "Attributes"
     | "Address"
-    | "CollectionName"
-    | "CollectionSymbol"
+    | "Collection Name"
+    | "Collection Symbol"
   )[];
   collectionDataLoadType?: "Together" | "Individual";
   prettyLoad?: boolean;
@@ -35,8 +35,16 @@ type Props = {
 export const NftCard = ({
   token,
   imageAlt = "Image",
-
-  renderOrder = ["Image", "Id", "Name", "Description", "Attributes", "Address", "CollectionName", "CollectionSymbol"],
+  renderOrder = [
+    "Image",
+    "Token Id",
+    "Name",
+    "Description",
+    "Attributes",
+    "Address",
+    "Collection Name",
+    "Collection Symbol",
+  ],
   prettyLoad = true,
   prettyLoadType = "animated",
   size = "base",
@@ -80,95 +88,42 @@ export const NftCard = ({
     let selectedDescriptor;
     let selectedElement;
 
-    if (renderOrder[i] === "Image") {
-      selectedDescriptor = "Image";
-      selectedElement = <ImageCard value={token?.metadata?.image} alt={imageAlt} />;
+    selectedDescriptor = renderOrder[i];
 
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Image">
-          <ImageCard value={token?.metadata?.image} alt={imageAlt} />
-        </DescriptorCard>,
-      );
+    if (renderOrder[i] === "Image") {
+      selectedDescriptor = undefined;
+      selectedElement = <ImageCard value={token?.metadata?.image} alt={imageAlt} />;
     }
 
-    if (renderOrder[i] === "Id") {
-      selectedDescriptor = "Token Id";
+    if (renderOrder[i] === "Token Id") {
       selectedElement = (
         <TextCard value={token?.id?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
-      );
-
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} descriptor="Token Id">
-          <TextCard value={token?.id?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
-        </DescriptorCard>,
       );
     }
 
     if (renderOrder[i] === "Name") {
-      selectedDescriptor = "Name";
       selectedElement = (
         <TextCard value={token?.metadata?.name} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
-      );
-
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Name">
-          <TextCard value={token?.metadata?.name} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
-        </DescriptorCard>,
       );
     }
 
     if (renderOrder[i] === "Description") {
-      selectedDescriptor = "Description";
       selectedElement = <TextCard value={token?.metadata?.description} size={size} />;
-
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Description">
-          <TextCard value={token?.metadata?.description} size={size} />
-        </DescriptorCard>,
-      );
     }
 
     if (renderOrder[i] === "Address") {
-      selectedDescriptor = "Address";
       selectedElement = <Address address={token?.address} size={valueStyleMap[size]} />;
-
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Collection Address">
-          <Address address={token?.address} size={valueStyleMap[size]} />
-        </DescriptorCard>,
-      );
     }
 
-    if (renderOrder[i] === "CollectionName") {
-      selectedDescriptor = "Collection Name";
+    if (renderOrder[i] === "Collection Name") {
       selectedElement = <TextCard value={token?.collectionName} size={size} />;
-
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Collection Name">
-          <TextCard value={token?.collectionName} size={size} />
-        </DescriptorCard>,
-      );
     }
-    if (renderOrder[i] === "CollectionSymbol") {
-      selectedDescriptor = "Collection Symbol";
+    if (renderOrder[i] === "Collection Symbol") {
       selectedElement = <TextCard value={token?.collectionSymbol} size={size} />;
-
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Collection Symbol">
-          <TextCard value={token?.collectionSymbol} size={size} />
-        </DescriptorCard>,
-      );
     }
 
     if (renderOrder[i] === "Attributes") {
-      selectedDescriptor = "Attributes";
       selectedElement = <NewAttributesCard value={token?.metadata?.attributes} style={style} size={size} />;
-
-      renderedComponents.push(
-        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Attributes">
-          <NewAttributesCard value={token?.metadata?.attributes} style={style} size={size} />
-        </DescriptorCard>,
-      );
     }
 
     renderedComponents.push(
