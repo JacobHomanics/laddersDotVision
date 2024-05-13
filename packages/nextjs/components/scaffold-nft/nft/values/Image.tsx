@@ -11,6 +11,7 @@ export type ImageProps = {
 export const Image = ({ value, alt = "Image", style = "rounded" }: ImageProps) => {
   return (
     <>
+      {/* eslint-disable-next-line*/}
       <img src={value} alt={alt} className={`bg-base-300 ${beautyStyleMap[style]}`} />
     </>
   );
