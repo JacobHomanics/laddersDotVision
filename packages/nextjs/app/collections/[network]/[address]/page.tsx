@@ -6,7 +6,7 @@ import { Collection } from "~~/components/scaffold-nft/collection/Collection";
 import useAdvancedFiltering from "~~/hooks/scaffold-nft/useAdvancedFiltering";
 import useCheckboxes from "~~/hooks/scaffold-nft/useCheckboxes";
 import useTokenIds from "~~/hooks/scaffold-nft/useTokenIds";
-import { useTokens } from "~~/hooks/scaffold-nft/useTokens2";
+import { useTokens } from "~~/hooks/scaffold-nft/useTokens";
 import { renderInputOptions } from "~~/scaffold-nft-config";
 
 export default function CollectionPage({ params }: { params: { network: string; address: string } }) {

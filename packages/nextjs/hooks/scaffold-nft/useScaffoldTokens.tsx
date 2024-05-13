@@ -2,7 +2,7 @@
 
 import { useFetches } from "./UseFetches";
 import { useTokenURIs } from "./useTokenURIs";
-import { replacementType } from "./useTokens2";
+import { replacementType } from "./useTokens";
 import { useScaffoldContract, useScaffoldReadContract } from "~~/hooks/scaffold-eth";
 
 const replacement = {
