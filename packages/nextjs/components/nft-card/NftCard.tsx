@@ -1,7 +1,7 @@
 "use client";
 
 import { Address } from "../scaffold-eth";
-import { Size, Style, beautyStyleMap } from "./types/Types";
+import { LoadType, RenderableTypes, Size, Style, beautyStyleMap } from "./types/Types";
 import { DescriptorCard } from "./values/DescriptorCard";
 import { ImageCard } from "./values/ImageCard";
 import { NewAttributesCard } from "./values/NewAttributesCard";
@@ -9,32 +9,30 @@ import { TextCard } from "./values/TextCard";
 import { v4 as uuidv4 } from "uuid";
 import { ScaffoldToken } from "~~/types/ScaffoldToken";
 
-type PrettyLoadType = "animated" | "text";
+const sizeMap = {
+  base: "w-32 lg:w-96 m-0.5 lg:m-4",
+  // base: "max-w-96 lg:max-w-max m-4",
+};
+
+const animatedLoadingSizeMap = {
+  base: "h-80 w-32",
+};
+
+const textLoadingSizeMap = {
+  base: "text-4xl",
+};
 
 type Props = {
   token?: ScaffoldToken;
-  imageAlt?: string;
-
-  renderOrder?: (
-    | "Image"
-    | "Token Id"
-    | "Name"
-    | "Description"
-    | "Attributes"
-    | "Address"
-    | "Collection Name"
-    | "Collection Symbol"
-  )[];
+  renderOrder?: RenderableTypes[];
   isLoading?: boolean;
-
-  prettyLoadType?: PrettyLoadType;
+  loadType?: LoadType;
   size?: Size;
   style?: Style;
 };
 
 export const NftCard = ({
   token,
-  imageAlt = "Image",
   renderOrder = [
     "Image",
     "Token Id",
@@ -45,26 +43,12 @@ export const NftCard = ({
     "Collection Name",
     "Collection Symbol",
   ],
-  // prettyLoad = true,
-  prettyLoadType = "animated",
   size = "base",
   style = "rounded",
-  isLoading = false,
+  isLoading,
+  loadType = "animated",
 }: Props) => {
-  const sizeMap = {
-    base: "w-32 lg:w-96 m-0.5 lg:m-4",
-    // base: "max-w-96 lg:max-w-max m-4",
-  };
-
-  const animatedLoadingSizeMap = {
-    base: "h-80 w-32",
-  };
-
-  const textLoadingSizeMap = {
-    base: "text-4xl",
-  };
-
-  const prettyLoadMap = {
+  const loadMap = {
     animated: (
       <div className="animate-pulse flex space-x-4">
         <div className="flex items-center space-y-6">
@@ -77,14 +61,6 @@ export const NftCard = ({
 
   const renderedComponents: any = [];
 
-  const bigAndBoldTextStyleMap = {
-    base: "text-lg m-0 font-bold",
-  };
-
-  const valueStyleMap = {
-    base: "xs",
-  } as any;
-
   for (let i = 0; i < renderOrder.length; i++) {
     let selectedDescriptor;
     let selectedElement;
@@ -93,8 +69,12 @@ export const NftCard = ({
 
     if (renderOrder[i] === "Image") {
       selectedDescriptor = undefined;
-      selectedElement = <ImageCard value={token?.metadata?.image?.value} alt={imageAlt} />;
+      selectedElement = <ImageCard value={token?.metadata?.image?.value} alt={token?.metadata?.image?.alt || ""} />;
     }
+
+    const bigAndBoldTextStyleMap = {
+      base: "text-lg m-0 font-bold",
+    };
 
     if (renderOrder[i] === "Token Id") {
       selectedElement = (
@@ -113,6 +93,10 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "Address") {
+      const valueStyleMap = {
+        base: "xs",
+      } as any;
+
       selectedElement = <Address address={token?.address} size={valueStyleMap[size]} />;
     }
 
@@ -137,7 +121,7 @@ export const NftCard = ({
   let cardContent: any;
 
   if (isLoading) {
-    cardContent = prettyLoadMap[prettyLoadType];
+    cardContent = loadMap[loadType];
   } else {
     cardContent = renderedComponents;
   }
