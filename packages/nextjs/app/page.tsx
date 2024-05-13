@@ -117,6 +117,27 @@ const Home: NextPage = () => {
             <button className="btn btn-primary" type="submit">
               Search
             </button>
+
+            <div className="flex flex-col justify-center text-center">
+              <p className="text-xl">Samples</p>
+              <div className="flex flex-wrap space-x-1 space-y-1 items-center justify-center">
+                <Link href="/collections/optimism/0x006eB613cc586198003a119485594ECbbDf41230" passHref>
+                  <button className="btn btn-primary">OP Loogies - Optimism</button>
+                </Link>
+                <Link href="/collections/base/0x1c8264Cee472ef10758DFe8AE05156A1E52E6e40" passHref>
+                  <button className="btn btn-primary">Weedies - Base</button>
+                </Link>
+                <Link href="/collections/base/0xdf00fdE26A6819507649904Ca52FE5062eF75Ba7" passHref>
+                  <button className="btn btn-primary">Trash - Base</button>
+                </Link>
+                <Link href="/collections/mainnet/0xed5af388653567af2f388e6224dc7c4b3241c544" passHref>
+                  <button className="btn btn-primary">Azuki - Mainnet</button>
+                </Link>
+                <Link href="/collections/mainnet/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" passHref>
+                  <button className="btn btn-primary">BAYC - Mainnet</button>
+                </Link>
+              </div>
+            </div>
           </form>
         </div>
 
