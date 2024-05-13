@@ -38,8 +38,6 @@ const Home: NextPage = () => {
 
   const [selectedDropdownOption, setSelectedDropdownOption] = useState(defaultOption);
 
-  console.log(selectedDropdownOption);
-
   async function onSubmit(e: any) {
     e.preventDefault();
 
