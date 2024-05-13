@@ -136,7 +136,10 @@ export const useTokens = (
 
           metadataJson.image = metadataJson.image.replace("ipfs://", replacement[replacementType as replacementType]);
 
-          // }
+          metadataJson.image = {
+            value: metadataJson.image,
+            alt: metadataJson.name + " Image",
+          };
 
           const token = {} as any;
           token.address = address;

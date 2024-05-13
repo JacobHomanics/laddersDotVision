@@ -25,8 +25,8 @@ type Props = {
     | "Collection Name"
     | "Collection Symbol"
   )[];
-  collectionDataLoadType?: "Together" | "Individual";
-  prettyLoad?: boolean;
+  isLoading?: boolean;
+
   prettyLoadType?: PrettyLoadType;
   size?: Size;
   style?: Style;
@@ -45,10 +45,11 @@ export const NftCard = ({
     "Collection Name",
     "Collection Symbol",
   ],
-  prettyLoad = true,
+  // prettyLoad = true,
   prettyLoadType = "animated",
   size = "base",
   style = "rounded",
+  isLoading = false,
 }: Props) => {
   const sizeMap = {
     base: "w-32 lg:w-96 m-0.5 lg:m-4",
@@ -92,7 +93,7 @@ export const NftCard = ({
 
     if (renderOrder[i] === "Image") {
       selectedDescriptor = undefined;
-      selectedElement = <ImageCard value={token?.metadata?.image} alt={imageAlt} />;
+      selectedElement = <ImageCard value={token?.metadata?.image?.value} alt={imageAlt} />;
     }
 
     if (renderOrder[i] === "Token Id") {
@@ -135,18 +136,8 @@ export const NftCard = ({
 
   let cardContent: any;
 
-  if (prettyLoad) {
-    if (
-      token?.metadata === undefined ||
-      token?.collectionName === undefined ||
-      token?.collectionSymbol === undefined ||
-      token?.address === undefined ||
-      token?.id === undefined
-    ) {
-      cardContent = prettyLoadMap[prettyLoadType];
-    } else {
-      cardContent = renderedComponents;
-    }
+  if (isLoading) {
+    cardContent = prettyLoadMap[prettyLoadType];
   } else {
     cardContent = renderedComponents;
   }

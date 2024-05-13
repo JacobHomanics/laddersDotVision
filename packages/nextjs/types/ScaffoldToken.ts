@@ -7,7 +7,11 @@ export type ScaffoldToken = {
   metadata?: {
     name?: string;
     description?: string;
-    image?: string;
+    image?: {
+      value: string;
+      alt: string;
+    };
+    // image?: string;
     attributes?: any[];
   };
 };

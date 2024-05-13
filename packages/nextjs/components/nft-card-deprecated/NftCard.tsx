@@ -129,7 +129,13 @@ export const NftCard = ({
   for (let i = 0; i < renderOrder.length; i++) {
     if (renderOrder[i] === "Image") {
       renderedComponents.push(
-        <ImageCard key={uuidv4()} value={token?.metadata?.image} showDescriptor={false} style={style} size={size} />,
+        <ImageCard
+          key={uuidv4()}
+          value={token?.metadata?.image?.value}
+          showDescriptor={false}
+          style={style}
+          size={size}
+        />,
       );
     }
 
