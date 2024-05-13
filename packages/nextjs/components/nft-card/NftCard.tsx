@@ -6,10 +6,12 @@ import { AddressCard, AddressCardProps } from "./values/AddressCard";
 import { AttributesCard, AttributesCardProps } from "./values/AttributesCard";
 import { CollectionNameCard, CollectionNameCardProps } from "./values/CollectionNameCard";
 import { CollectionSymbolCard, CollectionSymbolCardProps } from "./values/CollectionSymbolCard";
-import { DescriptionCard, DescriptionCardProps } from "./values/DescriptionCard";
-import { IdCard, IdCardProps } from "./values/IdCard";
+import { DescriptionCardProps } from "./values/DescriptionCard";
+import { DescriptorCard } from "./values/DescriptorCard";
+import { IdCardProps } from "./values/IdCard";
 import { ImageCard, ImageCardProps } from "./values/ImageCard";
-import { NameCard, NameCardProps } from "./values/NameCard";
+import { NameCardProps } from "./values/NameCard";
+import { TextCard } from "./values/TextCard";
 import { CollectionDetails, CollectionDetailsProps } from "./values/extensions/CollectionDetails";
 import { v4 as uuidv4 } from "uuid";
 import { ScaffoldToken } from "~~/types/ScaffoldToken";
@@ -19,6 +21,7 @@ type PrettyLoadType = "animated" | "text";
 type Props = {
   token?: ScaffoldToken;
   NameCard?: ComponentType<NameCardProps>;
+  imageAlt?: string;
   ImageCard?: ComponentType<ImageCardProps>;
   DescriptionCard?: ComponentType<DescriptionCardProps>;
   AttributesCard?: ComponentType<AttributesCardProps>;
@@ -45,17 +48,17 @@ type Props = {
   style?: Style;
 };
 
-const NameCardComponent = (props: NameCardProps) => {
-  return <NameCard {...props} />;
-};
+// const NameCardComponent = (props: NameCardProps) => {
+//   return <NameCard {...props} />;
+// };
 
 const ImageCardComponent = (props: ImageCardProps) => {
   return <ImageCard {...props} />;
 };
 
-const DescriptionCardComponent = (props: DescriptionCardProps) => {
-  return <DescriptionCard {...props} />;
-};
+// const DescriptionCardComponent = (props: DescriptionCardProps) => {
+//   return <DescriptionCard {...props} />;
+// };
 
 const AttributesCardComponent = (props: AttributesCardProps) => {
   return <AttributesCard {...props} />;
@@ -77,20 +80,21 @@ const CollectionDetailsCardComponent = (props: CollectionDetailsProps) => {
   return <CollectionDetails {...props} />;
 };
 
-const IdCardComponent = (props: IdCardProps) => {
-  return <IdCard {...props} />;
-};
+// const IdCardComponent = (props: IdCardProps) => {
+//   return <IdCard {...props} />;
+// };
 
 export const NftCard = ({
   token,
-  NameCard = NameCardComponent,
+  // NameCard = NameCardComponent,
+  imageAlt = "Image",
   ImageCard = ImageCardComponent,
-  DescriptionCard = DescriptionCardComponent,
+  // DescriptionCard = DescriptionCardComponent,
   AttributesCard = AttributesCardComponent,
   AddressCard = AddressCardComponent,
   CollectionNameCard = CollectionNameCardComponent,
   CollectionSymbolCard = CollectionSymbolCardComponent,
-  IdCard = IdCardComponent,
+  // IdCard = IdCardComponent,
   CollectionDetailsCard = CollectionDetailsCardComponent,
   collectionDataLoadType = "Together",
   renderOrder = ["Image", "Id", "Name", "Description", "Attributes", "Address", "CollectionName", "CollectionSymbol"],
@@ -126,40 +130,46 @@ export const NftCard = ({
   const renderedComponents: any = [];
   const collectionComponents: any = [];
 
+  const bigAndBoldTextStyleMap = {
+    base: "text-lg m-0 font-bold",
+  };
+
   for (let i = 0; i < renderOrder.length; i++) {
     if (renderOrder[i] === "Image") {
       renderedComponents.push(
-        <ImageCard key={uuidv4()} value={token?.metadata?.image} showDescriptor={false} style={style} size={size} />,
+        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Image">
+          <ImageCard value={token?.metadata?.image} alt={imageAlt} />
+        </DescriptorCard>,
+      );
+    }
+
+    if (renderOrder[i] === "Id") {
+      renderedComponents.push(
+        <DescriptorCard key={uuidv4()} style={style} descriptor="Token Id">
+          <TextCard value={token?.id?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
+        </DescriptorCard>,
       );
     }
 
     if (renderOrder[i] === "Name") {
       renderedComponents.push(
-        <NameCard key={uuidv4()} value={token?.metadata?.name} showDescriptor={true} style={style} size={size} />,
+        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Name">
+          <TextCard value={token?.metadata?.name} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
+        </DescriptorCard>,
       );
     }
 
     if (renderOrder[i] === "Description") {
       renderedComponents.push(
-        <DescriptionCard
-          key={uuidv4()}
-          value={token?.metadata?.description}
-          showDescriptor={true}
-          style={style}
-          size={size}
-        />,
+        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Description">
+          <TextCard value={token?.metadata?.description} size={size} />
+        </DescriptorCard>,
       );
     }
 
     if (renderOrder[i] === "Attributes") {
       renderedComponents.push(
         <AttributesCard key={uuidv4()} value={token?.metadata?.attributes} showDescriptor={true} style={style} />,
-      );
-    }
-
-    if (renderOrder[i] === "Id") {
-      renderedComponents.push(
-        <IdCard key={uuidv4()} value={token?.id} showDescriptor={true} style={style} size={size} />,
       );
     }
 

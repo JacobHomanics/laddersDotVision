@@ -2,7 +2,7 @@
 
 import React from "react";
 import "react-dropdown/style.css";
-import { NftCard } from "~~/components/nft-card/NftCard";
+import { NftCard } from "~~/components/nft-card-deprecated/NftCard";
 import { AddressCard, AddressCardProps } from "~~/components/nft-card/values/AddressCard";
 import { CollectionNameCard, CollectionNameCardProps } from "~~/components/nft-card/values/CollectionNameCard";
 import { CollectionSymbolCard, CollectionSymbolCardProps } from "~~/components/nft-card/values/CollectionSymbolCard";
