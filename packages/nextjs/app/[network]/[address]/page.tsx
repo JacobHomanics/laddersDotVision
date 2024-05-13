@@ -3,7 +3,7 @@
 import React from "react";
 import "react-dropdown/style.css";
 import { renderInputOptions } from "~~/app/nftCollectionPagesConfig";
-import { CollectionCard } from "~~/components/nft-card/CollectionCard";
+import { Collection } from "~~/components/nft-card/Collection";
 import useAdvancedFiltering from "~~/hooks/useAdvancedFiltering";
 import useCheckboxes from "~~/hooks/useCheckboxes";
 import useTokenIds from "~~/hooks/useTokenIds";
@@ -34,12 +34,7 @@ export default function CollectionPage({ params }: { params: { network: string; 
   return (
     <div className="flex flex-col items-center justify-center">
       {advancedOutput}
-      <CollectionCard
-        collection={collection}
-        isLoading={isLoading}
-        isError={isError}
-        renderOrder={componentsToRender}
-      />
+      <Collection collection={collection} isLoading={isLoading} isError={isError} renderOrder={componentsToRender} />
     </div>
   );
 }

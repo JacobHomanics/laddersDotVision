@@ -2,7 +2,7 @@
 
 import { renderInputOptions } from "../nftCollectionPagesConfig";
 import type { NextPage } from "next";
-import { CollectionCard } from "~~/components/nft-card/CollectionCard";
+import { Collection } from "~~/components/nft-card/Collection";
 import useAdvancedFiltering from "~~/hooks/useAdvancedFiltering";
 import useCheckboxes from "~~/hooks/useCheckboxes";
 import { useScaffoldTokens } from "~~/hooks/useScaffoldTokens";
@@ -23,12 +23,7 @@ const TestingGroundsPage: NextPage = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       {advancedOutput}
-      <CollectionCard
-        collection={collection}
-        isLoading={isLoading}
-        isError={isError}
-        renderOrder={componentsToRender}
-      />
+      <Collection collection={collection} isLoading={isLoading} isError={isError} renderOrder={componentsToRender} />
     </div>
   );
 };

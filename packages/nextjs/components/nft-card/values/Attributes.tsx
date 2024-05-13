@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Size, Style, beautyStyleMap } from "../types/Types";
 
-export type NewAttributesCardProps = {
+export type AttributesProps = {
   value?: { trait_type: string; value: string }[];
   style?: Style;
   size?: Size;
@@ -21,12 +21,12 @@ const attributeValueStyleMap = {
   base: "m-0 text-md",
 };
 
-export const NewAttributesCard = ({
+export const Attributes = ({
   value,
 
   style = "rounded",
   size = "base",
-}: NewAttributesCardProps) => {
+}: AttributesProps) => {
   const [sizeLayout, setSizeLayout] = useState(window.innerWidth < 720 ? "flex-col" : "flex-wrap");
 
   useEffect(() => {

@@ -1,8 +1,8 @@
 "use client";
 
 import { RenderableTypes, Size, Style } from "../../types/Types";
-import { DescriptorCard } from "../DescriptorCard";
-import { TextCard } from "../TextCard";
+import { Descriptor } from "../Descriptor";
+import { Text } from "../Text";
 import { Address } from "~~/components/scaffold-eth";
 import { ScaffoldCollection } from "~~/types/ScaffoldCollection";
 
@@ -39,26 +39,26 @@ export const CollectionDetails = ({
 
     if (renderOrder[i] === "Collection Name") {
       selectedDescriptor = "Name";
-      selectedElement = <TextCard value={collection?.name} size={size} />;
+      selectedElement = <Text value={collection?.name} size={size} />;
     }
     if (renderOrder[i] === "Collection Symbol") {
       selectedDescriptor = "Symbol";
 
-      selectedElement = <TextCard value={collection?.symbol} size={size} />;
+      selectedElement = <Text value={collection?.symbol} size={size} />;
     }
 
     renderedComponents.push(
-      <DescriptorCard descriptor={selectedDescriptor} size={size} style={style} bgColor="bg-base-200">
+      <Descriptor descriptor={selectedDescriptor} size={size} style={style} bgColor="bg-base-200">
         {selectedElement}
-      </DescriptorCard>,
+      </Descriptor>,
     );
   }
 
   return (
     <div>
-      <DescriptorCard descriptor="Collection Details" bgColor="bg-base-100" style={style} size={size}>
+      <Descriptor descriptor="Collection Details" bgColor="bg-base-100" style={style} size={size}>
         <div className={`flex justify-center ${valueStyleMap[size]}`}>{renderedComponents}</div>
-      </DescriptorCard>
+      </Descriptor>
     </div>
   );
 };

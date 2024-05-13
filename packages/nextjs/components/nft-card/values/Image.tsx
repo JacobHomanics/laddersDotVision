@@ -2,13 +2,13 @@
 
 import { Style, beautyStyleMap } from "../types/Types";
 
-export type ImageCardProps = {
+export type ImageProps = {
   value: string | undefined;
   alt: string;
   style?: Style;
 };
 
-export const ImageCard = ({ value, alt = "Image", style = "rounded" }: ImageCardProps) => {
+export const Image = ({ value, alt = "Image", style = "rounded" }: ImageProps) => {
   return (
     <>
       <img src={value} alt={alt} className={`bg-base-300 ${beautyStyleMap[style]}`} />

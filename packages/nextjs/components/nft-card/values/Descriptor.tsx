@@ -2,7 +2,7 @@
 
 import { Size, Style, beautyStyleMap } from "../types/Types";
 
-export type ValueContainerCardProps = {
+export type DescriptorProps = {
   descriptor?: string;
   style?: Style;
   size?: Size;
@@ -18,13 +18,13 @@ const descriptorStyleMap = {
   base: "p-0 m-0 text-xs",
 };
 
-export const DescriptorCard = ({
+export const Descriptor = ({
   descriptor = undefined,
   style = "rounded",
   size = "base",
   bgColor = "bg-base-200",
   children,
-}: ValueContainerCardProps) => {
+}: DescriptorProps) => {
   return (
     <div className={`${bgColor} ${beautyStyleMap[style]} ${containerStyleMap[size]}`}>
       {descriptor ? <p className={`text-center ${descriptorStyleMap[size]}`}>{descriptor}</p> : <></>}

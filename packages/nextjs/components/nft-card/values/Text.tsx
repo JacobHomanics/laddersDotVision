@@ -2,7 +2,7 @@
 
 import { Size } from "../types/Types";
 
-export type TextCardProps = {
+export type TextProps = {
   value: string | undefined;
   valueClassName?: string;
   size?: Size;
@@ -16,7 +16,7 @@ const undefinedStyleMap = {
   base: "text-md m-0",
 };
 
-export const TextCard = ({ value, size = "base", valueClassName = regularTextStyleMap[size] }: TextCardProps) => {
+export const Text = ({ value, size = "base", valueClassName = regularTextStyleMap[size] }: TextProps) => {
   return (
     <>
       {value ? (

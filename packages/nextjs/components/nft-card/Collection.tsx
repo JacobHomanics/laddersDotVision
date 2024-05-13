@@ -5,14 +5,14 @@ import "react-dropdown/style.css";
 import { NftCard } from "~~/components/nft-card/NftCard";
 import { CollectionDetails } from "~~/components/nft-card/values/extensions/CollectionDetails";
 
-type Props = {
+type CollectionProps = {
   collection: any;
   isLoading: any;
   isError: any;
   renderOrder: any;
 };
 
-export const CollectionCard = ({ collection, isLoading, isError, renderOrder }: Props) => {
+export const Collection = ({ collection, isLoading, isError, renderOrder }: CollectionProps) => {
   const tokensComponents = collection?.tokens?.map((token: any, index: number) => {
     return <NftCard key={index} token={token} renderOrder={renderOrder} />;
   });

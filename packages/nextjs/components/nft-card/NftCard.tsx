@@ -2,10 +2,10 @@
 
 import { Address } from "../scaffold-eth";
 import { LoadType, RenderableTypes, Size, Style, beautyStyleMap } from "./types/Types";
-import { DescriptorCard } from "./values/DescriptorCard";
-import { ImageCard } from "./values/ImageCard";
-import { NewAttributesCard } from "./values/NewAttributesCard";
-import { TextCard } from "./values/TextCard";
+import { Attributes } from "./values/Attributes";
+import { Descriptor } from "./values/Descriptor";
+import { Image } from "./values/Image";
+import { Text } from "./values/Text";
 import { v4 as uuidv4 } from "uuid";
 import { ScaffoldToken } from "~~/types/ScaffoldToken";
 
@@ -48,7 +48,7 @@ export const NftCard = ({
 
     if (renderOrder[i] === "Image") {
       selectedDescriptor = undefined;
-      selectedElement = <ImageCard value={token?.metadata?.image?.value} alt={token?.metadata?.image?.alt || ""} />;
+      selectedElement = <Image value={token?.metadata?.image?.value} alt={token?.metadata?.image?.alt || ""} />;
     }
 
     const bigAndBoldTextStyleMap = {
@@ -57,18 +57,18 @@ export const NftCard = ({
 
     if (renderOrder[i] === "Token Id") {
       selectedElement = (
-        <TextCard value={token?.id?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
+        <Text value={token?.id?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
       );
     }
 
     if (renderOrder[i] === "Name") {
       selectedElement = (
-        <TextCard value={token?.metadata?.name} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
+        <Text value={token?.metadata?.name} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
       );
     }
 
     if (renderOrder[i] === "Description") {
-      selectedElement = <TextCard value={token?.metadata?.description} size={size} />;
+      selectedElement = <Text value={token?.metadata?.description} size={size} />;
     }
 
     if (renderOrder[i] === "Address") {
@@ -80,20 +80,20 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "Collection Name") {
-      selectedElement = <TextCard value={token?.collectionName} size={size} />;
+      selectedElement = <Text value={token?.collectionName} size={size} />;
     }
     if (renderOrder[i] === "Collection Symbol") {
-      selectedElement = <TextCard value={token?.collectionSymbol} size={size} />;
+      selectedElement = <Text value={token?.collectionSymbol} size={size} />;
     }
 
     if (renderOrder[i] === "Attributes") {
-      selectedElement = <NewAttributesCard value={token?.metadata?.attributes} style={style} size={size} />;
+      selectedElement = <Attributes value={token?.metadata?.attributes} style={style} size={size} />;
     }
 
     renderedComponents.push(
-      <DescriptorCard key={uuidv4()} style={style} size={size} descriptor={selectedDescriptor}>
+      <Descriptor key={uuidv4()} style={style} size={size} descriptor={selectedDescriptor}>
         {selectedElement}
-      </DescriptorCard>,
+      </Descriptor>,
     );
   }
 
