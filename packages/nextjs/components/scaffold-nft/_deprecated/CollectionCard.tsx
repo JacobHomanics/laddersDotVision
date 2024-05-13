@@ -2,17 +2,17 @@
 
 import React from "react";
 import "react-dropdown/style.css";
-import { NftCard } from "~~/components/nft-card-deprecated/NftCard";
-import { AddressCard, AddressCardProps } from "~~/components/nft-card-deprecated/values/AddressCard";
+import { NftCard } from "~~/components/scaffold-nft/_deprecated/NftCard";
+import { AddressCard, AddressCardProps } from "~~/components/scaffold-nft/_deprecated/values/AddressCard";
 import {
   CollectionNameCard,
   CollectionNameCardProps,
-} from "~~/components/nft-card-deprecated/values/CollectionNameCard";
+} from "~~/components/scaffold-nft/_deprecated/values/CollectionNameCard";
 import {
   CollectionSymbolCard,
   CollectionSymbolCardProps,
-} from "~~/components/nft-card-deprecated/values/CollectionSymbolCard";
-import { CollectionDetails } from "~~/components/nft-card-deprecated/values/extensions/CollectionDetails";
+} from "~~/components/scaffold-nft/_deprecated/values/CollectionSymbolCard";
+import { CollectionDetails } from "~~/components/scaffold-nft/_deprecated/values/extensions/CollectionDetails";
 
 const AddressCardComponent = (props: AddressCardProps) => {
   return <AddressCard {...props} bgColor="bg-base-300" />;

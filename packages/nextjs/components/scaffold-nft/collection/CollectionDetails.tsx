@@ -1,8 +1,9 @@
 "use client";
 
-import { RenderableTypes, Size, Style } from "../../types/Types";
-import { Descriptor } from "../Descriptor";
-import { Text } from "../Text";
+import { Descriptor } from "../nft/values/Descriptor";
+import { Text } from "../nft/values/Text";
+import { RenderableTypes, Size, Style } from "../types/Types";
+import { v4 as uuidv4 } from "uuid";
 import { Address } from "~~/components/scaffold-eth";
 import { ScaffoldCollection } from "~~/types/ScaffoldCollection";
 
@@ -48,7 +49,7 @@ export const CollectionDetails = ({
     }
 
     renderedComponents.push(
-      <Descriptor descriptor={selectedDescriptor} size={size} style={style} bgColor="bg-base-200">
+      <Descriptor key={uuidv4()} descriptor={selectedDescriptor} size={size} style={style} bgColor="bg-base-200">
         {selectedElement}
       </Descriptor>,
     );

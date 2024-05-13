@@ -1,7 +1,7 @@
 "use client";
 
-import { Address } from "../scaffold-eth";
-import { LoadType, RenderableTypes, Size, Style, beautyStyleMap } from "./types/Types";
+import { Address } from "../../scaffold-eth";
+import { LoadType, RenderableTypes, Size, Style, beautyStyleMap } from "../types/Types";
 import { Attributes } from "./values/Attributes";
 import { Descriptor } from "./values/Descriptor";
 import { Image } from "./values/Image";
@@ -14,7 +14,7 @@ const sizeMap = {
   // base: "max-w-96 lg:max-w-max m-4",
 };
 
-type Props = {
+type NftProps = {
   token?: ScaffoldToken;
   renderOrder?: RenderableTypes[];
   isLoading?: boolean;
@@ -23,7 +23,7 @@ type Props = {
   style?: Style;
 };
 
-export const NftCard = ({
+export const Nft = ({
   token,
   renderOrder = [
     "Image",
@@ -37,7 +37,7 @@ export const NftCard = ({
   ],
   size = "base",
   style = "rounded",
-}: Props) => {
+}: NftProps) => {
   const renderedComponents: any = [];
 
   for (let i = 0; i < renderOrder.length; i++) {

@@ -2,7 +2,7 @@
 
 import { renderInputOptions } from "../nftCollectionPagesConfig";
 import type { NextPage } from "next";
-import { Collection } from "~~/components/nft-card/Collection";
+import { Collection } from "~~/components/scaffold-nft/collection/Collection";
 import useAdvancedFiltering from "~~/hooks/useAdvancedFiltering";
 import useCheckboxes from "~~/hooks/useCheckboxes";
 import { useScaffoldTokens } from "~~/hooks/useScaffoldTokens";

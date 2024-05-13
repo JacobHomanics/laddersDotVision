@@ -1,6 +1,6 @@
 "use client";
 
-import { Address } from "../../scaffold-eth";
+import { Address } from "../../../scaffold-eth";
 import { Size, Style, beautyStyleMap } from "../types/Types";
 
 export type AddressCardProps = {

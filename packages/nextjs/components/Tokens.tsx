@@ -2,7 +2,7 @@
 
 import React from "react";
 import "react-dropdown/style.css";
-import { NftCard } from "~~/components/nft-card/NftCard";
+import { Nft } from "~~/components/scaffold-nft/nft/Nft";
 
 type Props = {
   tokens: any;
@@ -13,7 +13,7 @@ type Props = {
 
 export const Tokens = ({ tokens, isLoading, isError, renderOrder }: Props) => {
   const tokensComponents = tokens.map((token: any, index: number) => {
-    return <NftCard key={index} token={token} renderOrder={renderOrder} />;
+    return <Nft key={index} token={token} renderOrder={renderOrder} />;
   });
 
   let mainContent;

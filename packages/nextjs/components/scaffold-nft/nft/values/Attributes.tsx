@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Size, Style, beautyStyleMap } from "../types/Types";
+import { Size, Style, beautyStyleMap } from "../../types/Types";
 
 export type AttributesProps = {
   value?: { trait_type: string; value: string }[];

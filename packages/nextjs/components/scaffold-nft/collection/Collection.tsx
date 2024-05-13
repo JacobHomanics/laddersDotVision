@@ -2,8 +2,8 @@
 
 import React from "react";
 import "react-dropdown/style.css";
-import { NftCard } from "~~/components/nft-card/NftCard";
-import { CollectionDetails } from "~~/components/nft-card/values/extensions/CollectionDetails";
+import { CollectionDetails } from "~~/components/scaffold-nft/collection/CollectionDetails";
+import { Nft } from "~~/components/scaffold-nft/nft/Nft";
 
 type CollectionProps = {
   collection: any;
@@ -14,7 +14,7 @@ type CollectionProps = {
 
 export const Collection = ({ collection, isLoading, isError, renderOrder }: CollectionProps) => {
   const tokensComponents = collection?.tokens?.map((token: any, index: number) => {
-    return <NftCard key={index} token={token} renderOrder={renderOrder} />;
+    return <Nft key={index} token={token} renderOrder={renderOrder} />;
   });
 
   let mainContent;

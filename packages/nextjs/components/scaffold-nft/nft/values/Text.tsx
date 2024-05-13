@@ -1,6 +1,6 @@
 "use client";
 
-import { Size } from "../types/Types";
+import { Size } from "../../types/Types";
 
 export type TextProps = {
   value: string | undefined;

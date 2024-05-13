@@ -3,7 +3,7 @@
 import React from "react";
 import "react-dropdown/style.css";
 import { renderInputOptions } from "~~/app/nftCollectionPagesConfig";
-import { Collection } from "~~/components/nft-card/Collection";
+import { Collection } from "~~/components/scaffold-nft/collection/Collection";
 import useAdvancedFiltering from "~~/hooks/useAdvancedFiltering";
 import useCheckboxes from "~~/hooks/useCheckboxes";
 import useTokenIds from "~~/hooks/useTokenIds";
