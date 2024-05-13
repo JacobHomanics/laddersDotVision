@@ -11,6 +11,7 @@ import { AttributesCard, AttributesCardProps } from "./values/AttributesCard";
 import { DescriptorCard } from "./values/DescriptorCard";
 // import { IdCardProps } from "./values/IdCard";
 import { ImageCard } from "./values/ImageCard";
+import { NewAttributesCard } from "./values/NewAttributesCard";
 // import { NameCardProps } from "./values/NameCard";
 // import { NewAddressCard } from "./values/NewAddressCard";
 import { TextCard } from "./values/TextCard";
@@ -198,6 +199,10 @@ export const NftCard = ({
 
     if (renderOrder[i] === "Attributes") {
       renderedComponents.push(
+        <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Attributes">
+          <NewAttributesCard value={token?.metadata?.attributes} style={style} size={size} />
+        </DescriptorCard>,
+
         <AttributesCard key={uuidv4()} value={token?.metadata?.attributes} showDescriptor={true} style={style} />,
       );
     }
