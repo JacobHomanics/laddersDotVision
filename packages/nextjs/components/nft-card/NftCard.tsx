@@ -77,7 +77,13 @@ export const NftCard = ({
   } as any;
 
   for (let i = 0; i < renderOrder.length; i++) {
+    let selectedDescriptor;
+    let selectedElement;
+
     if (renderOrder[i] === "Image") {
+      selectedDescriptor = "Image";
+      selectedElement = <ImageCard value={token?.metadata?.image} alt={imageAlt} />;
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Image">
           <ImageCard value={token?.metadata?.image} alt={imageAlt} />
@@ -86,6 +92,11 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "Id") {
+      selectedDescriptor = "Token Id";
+      selectedElement = (
+        <TextCard value={token?.id?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
+      );
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} descriptor="Token Id">
           <TextCard value={token?.id?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
@@ -94,6 +105,11 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "Name") {
+      selectedDescriptor = "Name";
+      selectedElement = (
+        <TextCard value={token?.metadata?.name} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
+      );
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Name">
           <TextCard value={token?.metadata?.name} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
@@ -102,6 +118,9 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "Description") {
+      selectedDescriptor = "Description";
+      selectedElement = <TextCard value={token?.metadata?.description} size={size} />;
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Description">
           <TextCard value={token?.metadata?.description} size={size} />
@@ -110,6 +129,9 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "Address") {
+      selectedDescriptor = "Address";
+      selectedElement = <Address address={token?.address} size={valueStyleMap[size]} />;
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Collection Address">
           <Address address={token?.address} size={valueStyleMap[size]} />
@@ -118,6 +140,9 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "CollectionName") {
+      selectedDescriptor = "Collection Name";
+      selectedElement = <TextCard value={token?.collectionName} size={size} />;
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Collection Name">
           <TextCard value={token?.collectionName} size={size} />
@@ -125,6 +150,9 @@ export const NftCard = ({
       );
     }
     if (renderOrder[i] === "CollectionSymbol") {
+      selectedDescriptor = "Collection Symbol";
+      selectedElement = <TextCard value={token?.collectionSymbol} size={size} />;
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Collection Symbol">
           <TextCard value={token?.collectionSymbol} size={size} />
@@ -133,12 +161,21 @@ export const NftCard = ({
     }
 
     if (renderOrder[i] === "Attributes") {
+      selectedDescriptor = "Attributes";
+      selectedElement = <NewAttributesCard value={token?.metadata?.attributes} style={style} size={size} />;
+
       renderedComponents.push(
         <DescriptorCard key={uuidv4()} style={style} size={size} descriptor="Attributes">
           <NewAttributesCard value={token?.metadata?.attributes} style={style} size={size} />
         </DescriptorCard>,
       );
     }
+
+    renderedComponents.push(
+      <DescriptorCard key={uuidv4()} style={style} size={size} descriptor={selectedDescriptor}>
+        {selectedElement}
+      </DescriptorCard>,
+    );
   }
 
   let cardContent: any;
