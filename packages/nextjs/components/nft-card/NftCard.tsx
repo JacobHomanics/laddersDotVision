@@ -14,14 +14,6 @@ const sizeMap = {
   // base: "max-w-96 lg:max-w-max m-4",
 };
 
-const animatedLoadingSizeMap = {
-  base: "h-80 w-32",
-};
-
-const textLoadingSizeMap = {
-  base: "text-4xl",
-};
-
 type Props = {
   token?: ScaffoldToken;
   renderOrder?: RenderableTypes[];
@@ -45,20 +37,7 @@ export const NftCard = ({
   ],
   size = "base",
   style = "rounded",
-  isLoading,
-  loadType = "animated",
 }: Props) => {
-  const loadMap = {
-    animated: (
-      <div className="animate-pulse flex space-x-4">
-        <div className="flex items-center space-y-6">
-          <div className={`bg-slate-300 ${animatedLoadingSizeMap[size]}  ${beautyStyleMap[style]}`}></div>
-        </div>
-      </div>
-    ),
-    text: <p className={`text-center ${textLoadingSizeMap[size]}`}>Loading NFT...</p>,
-  };
-
   const renderedComponents: any = [];
 
   for (let i = 0; i < renderOrder.length; i++) {
@@ -118,13 +97,7 @@ export const NftCard = ({
     );
   }
 
-  let cardContent: any;
-
-  if (isLoading) {
-    cardContent = loadMap[loadType];
-  } else {
-    cardContent = renderedComponents;
-  }
-
-  return <div className={`flex flex-col bg-base-300 ${sizeMap[size]} ${beautyStyleMap[style]}`}>{cardContent}</div>;
+  return (
+    <div className={`flex flex-col bg-base-300 ${sizeMap[size]} ${beautyStyleMap[style]}`}>{renderedComponents}</div>
+  );
 };
