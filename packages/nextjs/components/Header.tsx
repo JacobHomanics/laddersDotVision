@@ -24,11 +24,7 @@ export const menuLinks: HeaderMenuLink[] = [
     label: "Home",
     href: "/",
   },
-  {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
-  },
+
   // {
   //   label: "Metadata Upload",
   //   href: "/nft-storage",
@@ -82,6 +78,11 @@ export const Header = () => {
           label: "Testing Grounds",
           href: "/testing-grounds",
           icon: <BeakerIcon className="h-4 w-4" />,
+        },
+        {
+          label: "Debug Contracts",
+          href: "/debug",
+          icon: <BugAntIcon className="h-4 w-4" />,
         },
       ]);
     }
