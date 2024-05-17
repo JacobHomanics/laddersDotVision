@@ -7,7 +7,7 @@ import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 const deployedContracts = {
   31337: {
     Constraints: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0x2279B7A0a67DB372996a5FaB50D91eAA73d2eBe6",
       abi: [
         {
           type: "function",
@@ -42,7 +42,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     ScaffoldERC721: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x8A791620dd6260079BF849Dc5567aDC3F2FdC318",
       abi: [
         {
           type: "constructor",
@@ -599,7 +599,20 @@ const deployedContracts = {
           inputs: [],
         },
       ],
-      inheritedFunctions: {},
+      inheritedFunctions: {
+        approve: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        balanceOf: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        getApproved: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        isApprovedForAll: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        name: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        ownerOf: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        safeTransferFrom: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        setApprovalForAll: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        supportsInterface: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        symbol: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        tokenURI: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+        transferFrom: "lib/openzeppelin-contracts/contracts/token/ERC721/ERC721.sol",
+      },
     },
   },
 } as const;

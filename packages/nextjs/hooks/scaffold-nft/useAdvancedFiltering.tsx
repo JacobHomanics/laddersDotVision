@@ -22,7 +22,7 @@ export default function useAdvancedFiltering(inputComponents: any, onSubmitCallb
 
   // const [metadataLoadMethodChosenOption, setMetadataLoadMethodChosenOption] = useState(defaultMetadataLoadMethod.value);
 
-  const defaultMetadataLinkLoadOption = metadataLinkLoadOptions[0];
+  const defaultMetadataLinkLoadOption = metadataLinkLoadOptions[1];
 
   const [metadataLinkSelectedDropdownOption, setMetadataLinkLoadSelectedDropdownOption] =
     useState(defaultMetadataLinkLoadOption);

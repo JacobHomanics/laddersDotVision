@@ -20,7 +20,7 @@ contract DeployScript is ScaffoldETHDeploy {
             "Test",
             "T",
             // "ipfs://bafybeicilmsvboiccw7tba3knvxiokuxysqxwgycmr3vwfisypefcmxxwu/",
-            "ipfs://bafybeicpvzgkhgyhwggrtctzvztuk2mftmt56xogv6pi7mx2v42go35ltu/",
+            "ipfs://bafybeih6w26bakuxg2y2kr63dl76k7hbjh3mkvsfnbzpuq2xpmpyvsny6i/",
             0,
             0,
             0,
