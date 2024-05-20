@@ -6,7 +6,8 @@ import { Collection } from "~~/components/scaffold-nft/collection/Collection";
 import useAdvancedFiltering from "~~/hooks/scaffold-nft/useAdvancedFiltering";
 import useCheckboxes from "~~/hooks/scaffold-nft/useCheckboxes";
 import useTokenIds from "~~/hooks/scaffold-nft/useTokenIds";
-import { useTokens } from "~~/hooks/scaffold-nft/useTokens";
+// import { useTokens } from "~~/hooks/scaffold-nft/useTokens";
+import { useTokensRevamped } from "~~/hooks/scaffold-nft/useTokensRevampled";
 import { renderInputOptions } from "~~/scaffold-nft-config";
 
 export default function CollectionPage({ params }: { params: { network: string; address: string } }) {
@@ -18,23 +19,31 @@ export default function CollectionPage({ params }: { params: { network: string; 
   }
 
   const {
-    chosenOption,
+    // chosenOption,
     // chosenOption2,
     output: advancedOutput,
   } = useAdvancedFiltering(inputComponents, onSubmit);
 
-  const { collection, isLoading, isError } = useTokens(
-    params["network"],
-    params["address"],
-    tokenIds,
-    chosenOption,
-    //chosenOption2,
-  );
+  // const { collection, isLoading, isError } = useTokens(
+  //   params["network"],
+  //   params["address"],
+  //   tokenIds,
+  //   chosenOption,
+  //   //chosenOption2,
+  // );
+
+  const {
+    collection: collection2,
+    isLoading: isLoading2,
+    isError: isError2,
+  } = useTokensRevamped(params["network"], params["address"], tokenIds);
+
+  console.log(collection2);
 
   return (
     <div className="flex flex-col items-center justify-center">
       {advancedOutput}
-      <Collection collection={collection} isLoading={isLoading} isError={isError} renderOrder={componentsToRender} />
+      <Collection collection={collection2} isLoading={isLoading2} isError={isError2} renderOrder={componentsToRender} />
     </div>
   );
 }

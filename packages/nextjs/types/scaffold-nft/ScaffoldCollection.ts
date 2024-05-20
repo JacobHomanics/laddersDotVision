@@ -5,5 +5,6 @@ export type ScaffoldCollection = {
   address?: string;
   symbol?: string;
   name?: string;
+  balanceOf?: bigint;
   isLoading?: boolean;
 };

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import erc1155Abi from "./erc1155Abi.json";
+import { erc1155Abi } from "./erc1155Abi";
 import { erc721Abi } from "viem";
 import * as allChains from "viem/chains";
 import { usePublicClient } from "wagmi";
@@ -51,7 +51,7 @@ export const useTokens = (
           functionName: "name",
         });
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
 
       let collectionSymbol;
@@ -62,7 +62,7 @@ export const useTokens = (
           functionName: "symbol",
         });
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
       try {
         // const collectionName = await publicClient?.readContract({
@@ -87,7 +87,7 @@ export const useTokens = (
             args: ["0xAD10ec43441927C72D0f55bD495fDc762802a2Bb"],
           });
         } catch (e) {
-          console.log(e);
+          // console.log(e);
         }
 
         const arr = [];
@@ -102,7 +102,7 @@ export const useTokens = (
               args: [tokenIds[i]],
             });
           } catch (e) {
-            console.log(e);
+            // console.log(e);
             tokenURI = await publicClient?.readContract({
               address,
               abi: erc1155Abi,
@@ -127,7 +127,7 @@ export const useTokens = (
             const metadata = await fetch(tokenURIFormatted!);
             metadataJson = await metadata.json();
           } catch (e) {
-            console.log(e);
+            // console.log(e);
             metadataJson = JSON.parse(tokenURI?.substring(27));
           }
 
@@ -156,7 +156,7 @@ export const useTokens = (
 
         setCollection(collection);
       } catch (e) {
-        console.log(e);
+        // console.log(e);
         setIsError(true);
       }
 
