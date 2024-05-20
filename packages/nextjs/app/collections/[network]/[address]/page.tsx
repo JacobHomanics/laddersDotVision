@@ -3,14 +3,12 @@
 import React from "react";
 import "react-dropdown/style.css";
 import { Collection } from "~~/components/scaffold-nft/collection/Collection";
-import useAdvancedFilteringAssumptuous from "~~/hooks/scaffold-nft/useAdvancedFilteringAssumptuous";
+import useAdvancedFiltering from "~~/hooks/scaffold-nft/useAdvancedFiltering";
+// import useAdvancedFilteringAssumptuous from "~~/hooks/scaffold-nft/useAdvancedFilteringAssumptuous";
 import useCheckboxes from "~~/hooks/scaffold-nft/useCheckboxes";
-import { useTokensAssumptuous } from "~~/hooks/scaffold-nft/useTokensAssumptuous";
+import { useTokens } from "~~/hooks/scaffold-nft/useTokens";
+// import { useTokensAssumptuous } from "~~/hooks/scaffold-nft/useTokensAssumptuous";
 import { renderInputOptions } from "~~/scaffold-nft-config";
-
-// import useAdvancedFiltering from "~~/hooks/scaffold-nft/useAdvancedFiltering";
-// import useTokenIds from "~~/hooks/scaffold-nft/useTokenIds";
-// import { useTokens } from "~~/hooks/scaffold-nft/useTokens";
 
 export default function CollectionPage({ params }: { params: { network: string; address: string } }) {
   const { inputComponents, componentsToRender } = useCheckboxes(renderInputOptions);
@@ -26,38 +24,34 @@ export default function CollectionPage({ params }: { params: { network: string; 
   //   setNumToAttemptToRender(numToAttemptToRender);
   // }
 
+  const { selectedMetadataLoadType, tokenIds, output: advancedOutput } = useAdvancedFiltering(inputComponents, 15);
+
+  const { collection, isLoading, isError } = useTokens(
+    params["network"],
+    params["address"],
+    tokenIds,
+    selectedMetadataLoadType,
+  );
+
   // const {
-  //   // chosenOption,
-  //   // chosenOption2,
-  //   output: advancedOutput,
-  // } = useAdvancedFiltering(inputComponents, onSubmit);
+  //   startIndex,
+  //   numToAttemptToRender,
+  //   output: advancedOutput2,
+  // } = useAdvancedFilteringAssumptuous(inputComponents, 0, 14);
 
-  const {
-    startIndex,
-    numToAttemptToRender,
-    output: advancedOutput,
-  } = useAdvancedFilteringAssumptuous(inputComponents, 0, 14);
-
-  // const { collection, isLoading, isError } = useTokens(
-  //   params["network"],
-  //   params["address"],
-  //   tokenIds,
-  //   chosenOption,
-  //   //chosenOption2,
-  // );
-
-  const {
-    collection: collection2,
-    isLoading: isLoading2,
-    isError: isError2,
-  } = useTokensAssumptuous(params["network"], params["address"], startIndex, numToAttemptToRender);
-
-  console.log(collection2);
+  // const {
+  //   collection: collection2,
+  //   isLoading: isLoading2,
+  //   isError: isError2,
+  // } = useTokensAssumptuous(params["network"], params["address"], startIndex, numToAttemptToRender);
 
   return (
     <div className="flex flex-col items-center justify-center">
       {advancedOutput}
-      <Collection collection={collection2} isLoading={isLoading2} isError={isError2} renderOrder={componentsToRender} />
+      <Collection collection={collection} isLoading={isLoading} isError={isError} renderOrder={componentsToRender} />
+
+      {/* {advancedOutput2} */}
+      {/* <Collection collection={collection2} isLoading={isLoading2} isError={isError2} renderOrder={componentsToRender} /> */}
     </div>
   );
 }

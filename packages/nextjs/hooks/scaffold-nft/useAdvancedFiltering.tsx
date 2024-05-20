@@ -1,6 +1,7 @@
 import { useState } from "react";
 // import Select from "react-dropdown-select";
 import Select from "react-select";
+import useTokenIds from "~~/hooks/scaffold-nft/useTokenIds";
 
 const metadataLinkLoadOptions = [
   { value: "ipfs", label: "IPFS" },
@@ -13,7 +14,9 @@ const metadataLinkLoadOptions = [
 //   { value: "base64", label: "base64" },
 // ];
 
-export default function useAdvancedFiltering(inputComponents: any, onSubmitCallback?: any) {
+export default function useAdvancedFiltering(inputComponents: any, tokenIdsInitialCount: number) {
+  const { tokenIds, setTokenIds } = useTokenIds(tokenIdsInitialCount);
+
   // const defaultMetadataLoadMethod = metadataLoadMethods[1];
 
   // const [metadataLoadMethodSelectedDropdownOption, setMetadataLoadMethodSelectedDropdownOption] = useState(
@@ -41,7 +44,8 @@ export default function useAdvancedFiltering(inputComponents: any, onSubmitCallb
       tempArr.push(BigInt(i));
     }
 
-    if (onSubmitCallback) onSubmitCallback(tempArr, Number(event.target[1].value), Number(event.target[0].value));
+    setTokenIds([...tempArr]);
+    // if (onSubmitCallback) onSubmitCallback(tempArr);
   }
 
   const [isShowingAdvancedSettings, setIsShowingAdvancedSettings] = useState(false);
@@ -139,7 +143,8 @@ export default function useAdvancedFiltering(inputComponents: any, onSubmitCallb
   );
 
   return {
-    chosenOption: metadataLinkLoadChosenOption,
+    selectedMetadataLoadType: metadataLinkLoadChosenOption,
+    tokenIds,
     //chosenOption2: metadataLoadMethodChosenOption,
     output,
   };
