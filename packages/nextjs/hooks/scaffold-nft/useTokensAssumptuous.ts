@@ -6,7 +6,7 @@ import * as allChains from "viem/chains";
 import { createConfig, http, usePublicClient } from "wagmi";
 import { ScaffoldCollection } from "~~/types/scaffold-nft/ScaffoldCollection";
 
-export const useTokensRevamped = (chainName: string, address: string, numToAttemptLoad: number) => {
+export const useTokensAssumptuous = (chainName: string, address: string, numToAttemptLoad: number) => {
   const chain = allChains[chainName as keyof typeof allChains];
 
   const config = createConfig({

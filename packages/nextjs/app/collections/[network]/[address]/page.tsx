@@ -7,7 +7,7 @@ import { Collection } from "~~/components/scaffold-nft/collection/Collection";
 import useCheckboxes from "~~/hooks/scaffold-nft/useCheckboxes";
 // import useTokenIds from "~~/hooks/scaffold-nft/useTokenIds";
 // import { useTokens } from "~~/hooks/scaffold-nft/useTokens";
-import { useTokensRevamped } from "~~/hooks/scaffold-nft/useTokensRevampled";
+import { useTokensAssumptuous } from "~~/hooks/scaffold-nft/useTokensAssumptuous";
 import { renderInputOptions } from "~~/scaffold-nft-config";
 
 export default function CollectionPage({ params }: { params: { network: string; address: string } }) {
@@ -39,7 +39,7 @@ export default function CollectionPage({ params }: { params: { network: string; 
     collection: collection2,
     isLoading: isLoading2,
     isError: isError2,
-  } = useTokensRevamped(params["network"], params["address"], 15);
+  } = useTokensAssumptuous(params["network"], params["address"], 15);
 
   console.log(collection2);
 
