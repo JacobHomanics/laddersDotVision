@@ -41,7 +41,7 @@ export default function useAdvancedFiltering(inputComponents: any, onSubmitCallb
       tempArr.push(BigInt(i));
     }
 
-    if (onSubmitCallback) onSubmitCallback(tempArr);
+    if (onSubmitCallback) onSubmitCallback(tempArr, Number(event.target[1].value), Number(event.target[0].value));
   }
 
   const [isShowingAdvancedSettings, setIsShowingAdvancedSettings] = useState(false);
