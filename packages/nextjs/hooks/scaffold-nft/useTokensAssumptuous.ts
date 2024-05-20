@@ -109,11 +109,9 @@ export const useTokensAssumptuous = (
       const tokens = [];
       let currentIndex = BigInt(numStartIndex);
 
-      const endIndex = BigInt(numStartIndex + numToAttemptLoad);
+      // const endIndex = BigInt(numStartIndex + numToAttemptLoad);
 
       while (true) {
-        if (currentIndex === endIndex) break;
-
         let tokenURI: any;
         let tokenURIFormatted;
         let metadataJson;
@@ -202,6 +200,7 @@ export const useTokensAssumptuous = (
           tokens.push(token);
         }
 
+        if (currentIndex === BigInt(numToAttemptLoad)) break;
         currentIndex++;
       }
 
