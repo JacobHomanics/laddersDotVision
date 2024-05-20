@@ -6,7 +6,7 @@ import * as allChains from "viem/chains";
 import { createConfig, http, usePublicClient } from "wagmi";
 import { ScaffoldCollection } from "~~/types/scaffold-nft/ScaffoldCollection";
 
-export const useTokensRevamped = (chainName: string, address: string, tokenIds: bigint[]) => {
+export const useTokensRevamped = (chainName: string, address: string, numToAttemptLoad: number) => {
   const chain = allChains[chainName as keyof typeof allChains];
 
   const config = createConfig({
@@ -105,7 +105,7 @@ export const useTokensRevamped = (chainName: string, address: string, tokenIds: 
       let currentIndex = BigInt(0);
 
       while (true) {
-        if (currentIndex === BigInt(5)) break;
+        if (currentIndex === BigInt(numToAttemptLoad)) break;
 
         let tokenURI: any;
         let tokenURIFormatted;
@@ -212,7 +212,7 @@ export const useTokensRevamped = (chainName: string, address: string, tokenIds: 
 
     get();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [publicClient?.account, tokenIds]);
+  }, [publicClient?.account]);
 
   return { collection, isLoading, isError };
 };
