@@ -26,6 +26,7 @@ type NftProps = {
 export const Nft = ({
   token,
   renderOrder = [
+    "Balance",
     "Image",
     "Token Id",
     "Name",
@@ -41,19 +42,25 @@ export const Nft = ({
   const renderedComponents: any = [];
 
   for (let i = 0; i < renderOrder.length; i++) {
+    const bigAndBoldTextStyleMap = {
+      base: "text-lg m-0 font-bold",
+    };
+
     let selectedDescriptor;
     let selectedElement;
 
     selectedDescriptor = renderOrder[i];
 
+    if (renderOrder[i] === "Balance") {
+      selectedElement = (
+        <Text value={token?.balanceOf?.toString()} size={size} valueClassName={bigAndBoldTextStyleMap[size]} />
+      );
+    }
+
     if (renderOrder[i] === "Image") {
       selectedDescriptor = undefined;
       selectedElement = <Image value={token?.metadata?.image?.value} alt={token?.metadata?.image?.alt || ""} />;
     }
-
-    const bigAndBoldTextStyleMap = {
-      base: "text-lg m-0 font-bold",
-    };
 
     if (renderOrder[i] === "Token Id") {
       selectedElement = (

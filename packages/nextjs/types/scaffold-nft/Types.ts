@@ -8,6 +8,7 @@ export type Style = "rounded" | "straight";
 export type Size = "base";
 
 export type RenderableTypes =
+  | "Balance"
   | "Image"
   | "Token Id"
   | "Name"

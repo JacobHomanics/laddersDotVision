@@ -22,7 +22,7 @@ export const CollectionDetails = ({
   collection,
   size = "base",
   style = "rounded",
-  renderOrder = ["Address", "Collection Name", "Collection Symbol"],
+  renderOrder = ["Address", "Collection Name", "Collection Symbol", "Balance"],
 }: CollectionDetailsProps) => {
   const renderedComponents: any = [];
 
@@ -44,8 +44,11 @@ export const CollectionDetails = ({
     }
     if (renderOrder[i] === "Collection Symbol") {
       selectedDescriptor = "Symbol";
-
       selectedElement = <Text value={collection?.symbol} size={size} />;
+    }
+    if (renderOrder[i] === "Balance") {
+      selectedDescriptor = "Balance";
+      selectedElement = <Text value={collection?.balanceOf?.toString()} size={size} />;
     }
 
     renderedComponents.push(

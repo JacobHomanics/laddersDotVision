@@ -1,4 +1,5 @@
 export const renderInputOptions: any[] = [
+  { value: "Balance", defaultValue: true },
   { value: "Image", defaultValue: true },
   { value: "Token Id", defaultValue: true },
   { value: "Name", defaultValue: true },
