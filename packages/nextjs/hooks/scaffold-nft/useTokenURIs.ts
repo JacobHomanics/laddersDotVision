@@ -9,7 +9,6 @@ export function useTokenURIs(contract: any, tokenIds: bigint[]) {
   const refetch = useCallback(async () => {
     setIsLoading(true);
 
-    console.log("got new uris");
     try {
       const arr = [];
       for (let i = 0; i < tokenIds.length; i++) {

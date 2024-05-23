@@ -134,6 +134,9 @@ const Home: NextPage = () => {
                 <Link href="/collections/mainnet/0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D" passHref>
                   <button className="btn btn-primary">BAYC - Mainnet</button>
                 </Link>
+                <Link href="/collections/optimism/0xFEe6635F43E1eeff88F0A6876Dc9153Fb128a81F" passHref>
+                  <button className="btn btn-primary">ATX DAO Reputation - Optimism</button>
+                </Link>
               </div>
             </div>
           </form>
