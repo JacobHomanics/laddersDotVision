@@ -27,9 +27,8 @@ export const RainbowKitCustomConnectButton2 = () => {
     <ConnectButton.Custom>
       {({ account, chain, openConnectModal, mounted }) => {
         const connected = mounted && account && chain;
-        const blockExplorerAddressLink = account
-          ? getBlockExplorerAddressLink(targetNetwork2!, account.address)
-          : undefined;
+        const blockExplorerAddressLink =
+          account && targetNetwork2 ? getBlockExplorerAddressLink(targetNetwork2, account.address) : undefined;
 
         return (
           <>
@@ -42,7 +41,7 @@ export const RainbowKitCustomConnectButton2 = () => {
                 );
               }
 
-              if (chain.id !== targetNetwork2!.id) {
+              if (chain.id !== targetNetwork2?.id) {
                 return <WrongNetworkDropdown />;
               }
 
