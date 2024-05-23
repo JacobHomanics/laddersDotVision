@@ -72,7 +72,7 @@ export const useTokensAssumptuous = (
 
   useEffect(() => {
     async function get() {
-      if (!targetNetwork2?.id) return;
+      if (!targetNetwork2?.id || !account?.address) return;
 
       setIsLoading(true);
       const { supportsInterface: isErc1155Result, isErrored: isErc1155Error } = await getIsErc1155();

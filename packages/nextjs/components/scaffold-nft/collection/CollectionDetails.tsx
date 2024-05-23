@@ -15,7 +15,7 @@ export type CollectionDetailsProps = {
 };
 
 const valueStyleMap = {
-  base: "flex-col m-0",
+  base: "flex-wrap m-0",
 };
 
 export const CollectionDetails = ({
