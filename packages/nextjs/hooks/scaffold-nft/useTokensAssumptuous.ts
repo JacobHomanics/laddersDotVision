@@ -72,7 +72,7 @@ export const useTokensAssumptuous = (
 
   useEffect(() => {
     async function get() {
-      if (!targetNetwork2?.id || !account?.address) return;
+      if (!targetNetwork2?.id) return;
 
       setIsLoading(true);
       const { supportsInterface: isErc1155Result, isErrored: isErc1155Error } = await getIsErc1155();
@@ -106,12 +106,14 @@ export const useTokensAssumptuous = (
           functionName: "symbol",
         });
 
-        balanceOf = await publicClient?.readContract({
-          address,
-          abi: erc721Abi,
-          functionName: "balanceOf",
-          args: [account.address!],
-        });
+        if (account.address) {
+          balanceOf = await publicClient?.readContract({
+            address,
+            abi: erc721Abi,
+            functionName: "balanceOf",
+            args: [account.address],
+          });
+        }
       }
 
       const tokens = [];
@@ -138,12 +140,14 @@ export const useTokensAssumptuous = (
           }
 
           if (isErc1155Result) {
-            balanceOfToken = await publicClient?.readContract({
-              address,
-              abi: erc1155Abi,
-              functionName: "balanceOf",
-              args: [account.address!, currentIndex],
-            });
+            if (account.address) {
+              balanceOfToken = await publicClient?.readContract({
+                address,
+                abi: erc1155Abi,
+                functionName: "balanceOf",
+                args: [account.address, currentIndex],
+              });
+            }
 
             tokenURI = await publicClient?.readContract({
               address,
