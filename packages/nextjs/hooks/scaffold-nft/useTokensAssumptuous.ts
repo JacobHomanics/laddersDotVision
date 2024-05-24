@@ -4,7 +4,12 @@ import { erc1155Abi } from "./erc1155Abi";
 import { useTargetNetwork2 } from "./useTargetNetwork2";
 import { erc721Abi } from "viem";
 // import * as allChains from "viem/chains";
-import { createConfig, http, useAccount, usePublicClient } from "wagmi";
+import {
+  //createConfig, http,
+  useAccount,
+  usePublicClient,
+} from "wagmi";
+// import { getPublicClient } from "wagmi/actions";
 import { ScaffoldCollection } from "~~/types/scaffold-nft/ScaffoldCollection";
 
 export const useTokensAssumptuous = (
@@ -18,15 +23,28 @@ export const useTokensAssumptuous = (
   const account = useAccount();
   const { targetNetwork2 } = useTargetNetwork2(chainName);
 
-  const config = createConfig({
-    chains: [targetNetwork2!],
-    transports: {
-      [targetNetwork2!.id]: http(),
-    } as any,
-  });
+  // const config = createConfig({
+  //   chains: [targetNetwork2!],
+  //   transports: {
+  //     [targetNetwork2!.id]: http(),
+  //   } as any,
+  // });
 
-  const publicClient = usePublicClient({ chainId: targetNetwork2!.id, config });
+  const publicClient = usePublicClient();
 
+  // const []
+  // useEffect(()=> {
+  //   const config = createConfig({
+  //     chains: [targetNetwork2!],
+  //     transports: {
+  //       [targetNetwork2!.id]: http(),
+  //     } as any,
+  //   });
+
+  //   // getPukkkblicClient(config, {chainId: targetNetwork2!.id});
+
+  //   const publicClient = usePublicClient({ chainId: targetNetwork2!.id, config });
+  // }, [])
   const [isLoading, setIsLoading] = useState(false);
   const [isError] = useState(false);
 
@@ -90,8 +108,6 @@ export const useTokensAssumptuous = (
 
       let collectionName;
       let collectionSymbol;
-
-      console.log(targetNetwork2);
 
       if (isErc721) {
         collectionName = await publicClient?.readContract({

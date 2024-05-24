@@ -8,7 +8,8 @@ import { WrongNetworkDropdown } from "./WrongNetworkDropdown";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Address } from "viem";
 import { useNetworkColor } from "~~/hooks/scaffold-eth";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+// import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+import { useGlobalState } from "~~/services/store/store";
 import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 
 /**
@@ -16,14 +17,15 @@ import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
  */
 export const RainbowKitCustomConnectButton = () => {
   const networkColor = useNetworkColor();
-  const { targetNetwork } = useTargetNetwork();
+  // const { targetNetwork } = useTargetNetwork();
+  const targetNetwork2 = useGlobalState(({ targetNetwork2 }) => targetNetwork2);
 
   return (
     <ConnectButton.Custom>
       {({ account, chain, openConnectModal, mounted }) => {
         const connected = mounted && account && chain;
         const blockExplorerAddressLink = account
-          ? getBlockExplorerAddressLink(targetNetwork, account.address)
+          ? getBlockExplorerAddressLink(targetNetwork2, account.address)
           : undefined;
 
         return (
@@ -37,7 +39,7 @@ export const RainbowKitCustomConnectButton = () => {
                 );
               }
 
-              if (chain.unsupported || chain.id !== targetNetwork.id) {
+              if (chain.id !== targetNetwork2.id) {
                 return <WrongNetworkDropdown />;
               }
 

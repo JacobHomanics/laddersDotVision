@@ -21,9 +21,17 @@ export function useTargetNetwork2(chainName: string): { targetNetwork2: ChainWit
     //   setTargetNetwork2(newSelectedNetwork);
     // }
 
-    const chain2 = allChains[chainName as keyof typeof allChains];
+    async function get() {
+      // const result = await import("viem/chains/");
 
-    setTargetNetwork2(chain2);
+      // console.log(result);
+
+      // const chain2 = result[chainName as keyof typeof allChains];
+
+      const chain2 = allChains[chainName as keyof typeof allChains];
+      setTargetNetwork2(chain2);
+    }
+    get();
   }, [setTargetNetwork2, targetNetwork2?.id]);
 
   return {

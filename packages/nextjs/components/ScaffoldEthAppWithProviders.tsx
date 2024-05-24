@@ -1,18 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
+// import { usePathname } from "next/navigation";
+// import { wagmiConfig } from "~~/services/web3/wagmiConfig";
+import { wagmiConnectors } from "../services/web3/wagmiConnectors";
 import { RainbowKitProvider, darkTheme, lightTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useTheme } from "next-themes";
 import { Toaster } from "react-hot-toast";
+import { Chain, createClient, http } from "viem";
+import { hardhat } from "viem/chains";
 import { WagmiProvider } from "wagmi";
+import { createConfig } from "wagmi";
 import { Footer } from "~~/components/Footer";
 import { Header } from "~~/components/Header";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
 import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
+import scaffoldConfig from "~~/scaffold.config";
 import { useGlobalState } from "~~/services/store/store";
-import { wagmiConfig } from "~~/services/web3/wagmiConfig";
+import { getAlchemyHttpUrl } from "~~/utils/scaffold-eth";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   const price = useNativeCurrencyPrice();
@@ -52,6 +59,28 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  const targetNetwork2 = useGlobalState(({ targetNetwork2 }) => targetNetwork2);
+
+  console.log(targetNetwork2);
+
+  // console.log(targetNetwork2);
+  const wagmiConfig = createConfig({
+    chains: [targetNetwork2],
+    connectors: wagmiConnectors,
+    ssr: true,
+    client({ chain }) {
+      return createClient({
+        chain,
+        transport: http(getAlchemyHttpUrl(chain.id)),
+        ...(chain.id !== (hardhat as Chain).id
+          ? {
+              pollingInterval: scaffoldConfig.pollingInterval,
+            }
+          : {}),
+      });
+    },
+  });
 
   return (
     <WagmiProvider config={wagmiConfig}>

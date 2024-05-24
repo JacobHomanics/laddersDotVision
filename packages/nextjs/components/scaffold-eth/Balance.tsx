@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Address, formatEther } from "viem";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+// import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { useWatchBalance } from "~~/hooks/scaffold-eth/useWatchBalance";
 import { useGlobalState } from "~~/services/store/store";
 
@@ -16,7 +16,9 @@ type BalanceProps = {
  * Display (ETH & USD) balance of an ETH address.
  */
 export const Balance = ({ address, className = "", usdMode }: BalanceProps) => {
-  const { targetNetwork } = useTargetNetwork();
+  // const { targetNetwork } = useTargetNetwork();
+  const targetNetwork2 = useGlobalState(({ targetNetwork2 }) => targetNetwork2);
+
   const price = useGlobalState(state => state.nativeCurrencyPrice);
   const {
     data: balance,
@@ -69,7 +71,7 @@ export const Balance = ({ address, className = "", usdMode }: BalanceProps) => {
         ) : (
           <>
             <span>{formattedBalance.toFixed(4)}</span>
-            <span className="text-[0.8em] font-bold ml-1">{targetNetwork.nativeCurrency.symbol}</span>
+            <span className="text-[0.8em] font-bold ml-1">{targetNetwork2.nativeCurrency.symbol}</span>
           </>
         )}
       </div>
