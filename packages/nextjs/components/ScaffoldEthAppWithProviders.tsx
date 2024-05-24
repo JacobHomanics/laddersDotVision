@@ -19,6 +19,7 @@ import { ProgressBar } from "~~/components/scaffold-eth/ProgressBar";
 import { useNativeCurrencyPrice } from "~~/hooks/scaffold-eth";
 import scaffoldConfig from "~~/scaffold.config";
 import { useGlobalState } from "~~/services/store/store";
+// import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 import { getAlchemyHttpUrl } from "~~/utils/scaffold-eth";
 
 const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
@@ -62,25 +63,66 @@ export const ScaffoldEthAppWithProviders = ({ children }: { children: React.Reac
 
   const targetNetwork2 = useGlobalState(({ targetNetwork2 }) => targetNetwork2);
 
-  console.log(targetNetwork2);
+  const [wagmiConfig, setWagmiConfig] = useState<any>(
+    createConfig({
+      chains: [targetNetwork2],
+      connectors: wagmiConnectors,
+      ssr: true,
+      client({ chain }) {
+        return createClient({
+          chain,
+          transport: http(getAlchemyHttpUrl(chain.id)),
+          ...(chain.id !== (hardhat as Chain).id
+            ? {
+                pollingInterval: scaffoldConfig.pollingInterval,
+              }
+            : {}),
+        });
+      },
+    }),
+  );
 
-  // console.log(targetNetwork2);
-  const wagmiConfig = createConfig({
-    chains: [targetNetwork2],
-    connectors: wagmiConnectors,
-    ssr: true,
-    client({ chain }) {
-      return createClient({
-        chain,
-        transport: http(getAlchemyHttpUrl(chain.id)),
-        ...(chain.id !== (hardhat as Chain).id
-          ? {
-              pollingInterval: scaffoldConfig.pollingInterval,
-            }
-          : {}),
-      });
-    },
-  });
+  useEffect(() => {
+    setWagmiConfig(
+      createConfig({
+        chains: [targetNetwork2],
+        connectors: wagmiConnectors,
+        ssr: true,
+        client({ chain }) {
+          return createClient({
+            chain,
+            transport: http(getAlchemyHttpUrl(chain.id)),
+            ...(chain.id !== (hardhat as Chain).id
+              ? {
+                  pollingInterval: scaffoldConfig.pollingInterval,
+                }
+              : {}),
+          });
+        },
+      }),
+    );
+  }, [targetNetwork2.id]);
+
+  // const result = {
+  //   ...wagmiConfig,
+  //   ...{chains: [targetNetwork2]},
+  // };
+  // const wagmiConfig = createConfig({
+  //   chains: [targetNetwork2],
+  //   connectors: wagmiConnectors,
+  //   ssr: true,
+  //   client({ chain }) {
+  //     return createClient({
+  //       chain,
+  //       transport: http(getAlchemyHttpUrl(chain.id)),
+  //       ...(chain.id !== (hardhat as Chain).id
+  //         ? {
+  //             pollingInterval: scaffoldConfig.pollingInterval,
+  //           }
+  //         : {}),
+  //     });
+  //   },
+  // });
 
   return (
     <WagmiProvider config={wagmiConfig}>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { erc165Abi } from "./erc165Abi";
 import { erc1155Abi } from "./erc1155Abi";
-import { useTargetNetwork2 } from "./useTargetNetwork2";
 import { erc721Abi } from "viem";
 // import * as allChains from "viem/chains";
 import {
@@ -12,16 +11,11 @@ import {
 // import { getPublicClient } from "wagmi/actions";
 import { ScaffoldCollection } from "~~/types/scaffold-nft/ScaffoldCollection";
 
-export const useTokensAssumptuous = (
-  chainName: string,
-  address: string,
-  numStartIndex: number,
-  numToAttemptLoad: number,
-) => {
+export const useTokensAssumptuous = (address: string, numStartIndex: number, numToAttemptLoad: number) => {
   // const chain = allChains[chainName as keyof typeof allChains];
 
   const account = useAccount();
-  const { targetNetwork2 } = useTargetNetwork2(chainName);
+  // const { targetNetwork2 } = useTargetNetwork2(chainName);
 
   // const config = createConfig({
   //   chains: [targetNetwork2!],
@@ -90,8 +84,6 @@ export const useTokensAssumptuous = (
 
   useEffect(() => {
     async function get() {
-      if (!targetNetwork2?.id) return;
-
       setIsLoading(true);
       const { supportsInterface: isErc1155Result, isErrored: isErc1155Error } = await getIsErc1155();
       const { supportsInterface: isErc721Result, isErrored: isErc721Error } = await getIsErc721();
@@ -110,26 +102,28 @@ export const useTokensAssumptuous = (
       let collectionSymbol;
 
       if (isErc721) {
-        collectionName = await publicClient?.readContract({
-          address,
-          abi: erc721Abi,
-          functionName: "name",
-        });
-
-        collectionSymbol = await publicClient?.readContract({
-          address,
-          abi: erc721Abi,
-          functionName: "symbol",
-        });
-
-        if (account.address) {
-          balanceOf = await publicClient?.readContract({
+        try {
+          collectionName = await publicClient?.readContract({
             address,
             abi: erc721Abi,
-            functionName: "balanceOf",
-            args: [account.address],
+            functionName: "name",
           });
-        }
+
+          collectionSymbol = await publicClient?.readContract({
+            address,
+            abi: erc721Abi,
+            functionName: "symbol",
+          });
+
+          if (account.address) {
+            balanceOf = await publicClient?.readContract({
+              address,
+              abi: erc721Abi,
+              functionName: "balanceOf",
+              args: [account.address],
+            });
+          }
+        } catch (e) {}
       }
 
       const tokens = [];
@@ -246,7 +240,7 @@ export const useTokensAssumptuous = (
 
     get();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [publicClient?.account, targetNetwork2!.id, account.address, numStartIndex, numToAttemptLoad]);
+  }, [publicClient?.chain?.id, account.address, numStartIndex, numToAttemptLoad]);
 
   return { collection, isLoading, isError };
 };

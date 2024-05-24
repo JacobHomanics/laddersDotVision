@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import * as allChains from "viem/chains";
+// import dynamic from "next/dynamic";
+// import * as allChains from "viem/chains";
 // import { useAccount } from "wagmi";
 // import { createConfig, http, usePublicClient } from "wagmi";
 // import scaffoldConfig from "~~/scaffold.config";
@@ -28,7 +29,15 @@ export function useTargetNetwork2(chainName: string): { targetNetwork2: ChainWit
 
       // const chain2 = result[chainName as keyof typeof allChains];
 
-      const chain2 = allChains[chainName as keyof typeof allChains];
+      const value = (await import("viem/chains")) as any;
+
+      // .then((mod) => mod[chainName])
+      // const Widget = dynamic(
+      //   () => ,
+      //   { ssr: false }
+      // );
+
+      const chain2 = value[chainName as any];
       setTargetNetwork2(chain2);
     }
     get();
@@ -36,8 +45,8 @@ export function useTargetNetwork2(chainName: string): { targetNetwork2: ChainWit
 
   return {
     targetNetwork2: {
-      ...targetNetwork2!,
-      ...NETWORKS_EXTRA_DATA[targetNetwork2?.id || 0],
+      ...targetNetwork2,
+      ...NETWORKS_EXTRA_DATA[targetNetwork2.id],
     },
   };
 }
