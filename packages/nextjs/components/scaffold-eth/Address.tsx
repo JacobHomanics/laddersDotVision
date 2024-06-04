@@ -9,7 +9,8 @@ import { normalize } from "viem/ens";
 import { useEnsAvatar, useEnsName } from "wagmi";
 import { CheckCircleIcon, DocumentDuplicateIcon } from "@heroicons/react/24/outline";
 import { BlockieAvatar } from "~~/components/scaffold-eth";
-import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
+import { useGlobalState } from "~~/services/store/store";
+// import { useTargetNetwork } from "~~/hooks/scaffold-eth/useTargetNetwork";
 import { getBlockExplorerAddressLink } from "~~/utils/scaffold-eth";
 
 type AddressProps = {
@@ -38,7 +39,7 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
   const [addressCopied, setAddressCopied] = useState(false);
   const checkSumAddress = address ? getAddress(address) : undefined;
 
-  const { targetNetwork } = useTargetNetwork();
+  const targetNetwork2 = useGlobalState(({ targetNetwork2 }) => targetNetwork2);
 
   const { data: fetchedEns } = useEnsName({
     address: checkSumAddress,
@@ -81,7 +82,7 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
     return <span className="text-error">Wrong address</span>;
   }
 
-  const blockExplorerAddressLink = getBlockExplorerAddressLink(targetNetwork, checkSumAddress);
+  const blockExplorerAddressLink = getBlockExplorerAddressLink(targetNetwork2, checkSumAddress);
   let displayAddress = checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4);
 
   if (ens) {
@@ -101,7 +102,7 @@ export const Address = ({ address, disableAddressLink, format, size = "base" }: 
       </div>
       {disableAddressLink ? (
         <span className={`ml-1.5 text-${size} font-normal`}>{displayAddress}</span>
-      ) : targetNetwork.id === hardhat.id ? (
+      ) : targetNetwork2.id === hardhat.id ? (
         <span className={`ml-1.5 text-${size} font-normal`}>
           <Link href={blockExplorerAddressLink}>{displayAddress}</Link>
         </span>
